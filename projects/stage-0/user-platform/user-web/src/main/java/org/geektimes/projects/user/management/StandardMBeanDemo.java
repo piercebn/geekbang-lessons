@@ -9,7 +9,7 @@ public class StandardMBeanDemo {
 
     public static void main(String[] args) throws Exception {
         // 将静态的 MBean 接口转化成 DynamicMBean
-        StandardMBean standardMBean = new StandardMBean(new UserManager(new User()), UserManagerMBean.class);
+        StandardMBean standardMBean = new StandardMBean(new UserManager(new User()), UserManagerMXBean.class);
 
         MBeanInfo mBeanInfo = standardMBean.getMBeanInfo();
 
