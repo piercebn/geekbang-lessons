@@ -10,5 +10,6 @@ public class ComponentContextInitializer implements ServletContainerInitializer 
     public void onStartup(Set<Class<?>> c, ServletContext servletContext) throws ServletException {
         // 增加 ServletContextListener
         servletContext.addListener(ComponentContextInitializerListener.class);
+        System.out.println("+++++ComponentContextInitializer startup!");
     }
 }

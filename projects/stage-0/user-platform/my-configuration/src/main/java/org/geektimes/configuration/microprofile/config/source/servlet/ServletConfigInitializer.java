@@ -11,5 +11,6 @@ public class ServletConfigInitializer implements ServletContainerInitializer {
     public void onStartup(Set<Class<?>> c, ServletContext servletContext) throws ServletException {
         // 增加 ServletContextListener
         servletContext.addListener(ServletContextConfigInitializer.class);
+        System.out.println("+++++ServletConfigInitializer startup!");
     }
 }

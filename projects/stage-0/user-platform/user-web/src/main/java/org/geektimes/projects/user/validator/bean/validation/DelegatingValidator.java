@@ -13,7 +13,7 @@ public class DelegatingValidator implements Validator {
 
     private Validator validator;
 
-    @PostConstruct
+//    @PostConstruct
     public void init() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         this.validator = factory.getValidator();

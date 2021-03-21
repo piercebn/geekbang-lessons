@@ -10,5 +10,6 @@ public class TestingInitializer implements ServletContainerInitializer {
     public void onStartup(Set<Class<?>> c, ServletContext servletContext) throws ServletException {
         // 增加 ServletContextListener
         servletContext.addListener(TestingListener.class);
+        System.out.println("+++++TestingInitializer startup!");
     }
 }
