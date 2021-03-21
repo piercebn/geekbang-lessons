@@ -3,6 +3,7 @@ package org.geektimes.configuration.microprofile.config.source.servlet;
 import org.eclipse.microprofile.config.Config;
 import org.eclipse.microprofile.config.spi.ConfigBuilder;
 import org.eclipse.microprofile.config.spi.ConfigProviderResolver;
+import org.geektimes.configuration.microprofile.config.converter.*;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -19,7 +20,7 @@ public class ServletContextConfigInitializer implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         ServletContext servletContext = servletContextEvent.getServletContext();
-        ServletContextConfigSource servletContextConfigSource = new ServletContextConfigSource(servletContext);
+//        ServletContextConfigSource servletContextConfigSource = new ServletContextConfigSource(servletContext);
         // 获取当前 ClassLoader
         ClassLoader classLoader = servletContext.getClassLoader();
         ConfigProviderResolver configProviderResolver = ConfigProviderResolver.instance();
@@ -31,7 +32,19 @@ public class ServletContextConfigInitializer implements ServletContextListener {
         // 通过发现配置源（动态的）
         configBuilder.addDiscoveredConverters();
         // 增加扩展配置源（基于 Servlet 引擎）
-        configBuilder.withSources(servletContextConfigSource);
+//        configBuilder.withSources(servletContextConfigSource);
+        // 增加扩展Converter
+        configBuilder.withConverters(
+                new BooleanConverter(),
+                new ByteConverter(),
+                new DoubleConverter(),
+                new FloatConverter(),
+                new IntegerConverter(),
+                new LongConverter(),
+                new ShortConverter(),
+                new StringConverter()
+        );
+
         // 获取 Config
         Config config = configBuilder.build();
         // 注册 Config 关联到当前 ClassLoader

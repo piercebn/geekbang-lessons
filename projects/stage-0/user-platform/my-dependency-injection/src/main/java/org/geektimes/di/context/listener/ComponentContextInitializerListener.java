@@ -1,6 +1,6 @@
-package org.geektimes.projects.user.web.listener;
+package org.geektimes.di.context.listener;
 
-import org.geektimes.context.ComponentContext;
+import org.geektimes.di.context.ComponentContext;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
