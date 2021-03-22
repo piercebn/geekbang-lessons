@@ -16,6 +16,7 @@ import javax.servlet.ServletContextListener;
  */
 public class ServletContextConfigInitializer implements ServletContextListener {
 
+    public static final String CONTEXT_NAME = Config.class.getName();
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
@@ -49,6 +50,7 @@ public class ServletContextConfigInitializer implements ServletContextListener {
         Config config = configBuilder.build();
         // 注册 Config 关联到当前 ClassLoader
         configProviderResolver.registerConfig(config, classLoader);
+        servletContext.setAttribute(CONTEXT_NAME, config);
     }
 
     @Override

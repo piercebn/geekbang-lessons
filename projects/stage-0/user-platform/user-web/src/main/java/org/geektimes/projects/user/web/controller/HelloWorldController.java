@@ -20,8 +20,9 @@ public class HelloWorldController implements PageController {
     @POST
     @Path("/world") // /hello/world -> HelloWorldController
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-        ConfigProviderResolver configProviderResolver = ConfigProviderResolver.instance();
-        Config config = configProviderResolver.getConfig(Thread.currentThread().getContextClassLoader());
+        Config config = (Config) request.getServletContext().getAttribute(Config.class.getName());
+//        ConfigProviderResolver configProviderResolver = ConfigProviderResolver.instance();
+//        Config config = configProviderResolver.getConfig(Thread.currentThread().getContextClassLoader());
         //get config from DefaultResourceConfigSource
         String appName = config.getValue("app.name", String.class);
         Float appVersion = config.getValue("app.version", Float.class);
