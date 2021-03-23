@@ -2,6 +2,8 @@ package org.geektimes.projects.user.web.controller;
 
 import org.eclipse.microprofile.config.Config;
 import org.eclipse.microprofile.config.spi.ConfigProviderResolver;
+import org.geektimes.di.context.ComponentContext;
+import org.geektimes.projects.user.sql.DBConnectionManager;
 import org.geektimes.web.mvc.controller.PageController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +22,12 @@ public class HelloWorldController implements PageController {
     @POST
     @Path("/world") // /hello/world -> HelloWorldController
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+        //1。验证DBConnectionManager中的是否正常注入
+        ComponentContext context = ComponentContext.getInstance();
+        DBConnectionManager dbConnectionManager = context.getComponent("bean/DBConnectionManager");
+        dbConnectionManager.getEntityManager();
+
+        //2。验证通过ServletContext获取Config对象，并读取配置值
         Config config = (Config) request.getServletContext().getAttribute(Config.class.getName());
 //        ConfigProviderResolver configProviderResolver = ConfigProviderResolver.instance();
 //        Config config = configProviderResolver.getConfig(Thread.currentThread().getContextClassLoader());
