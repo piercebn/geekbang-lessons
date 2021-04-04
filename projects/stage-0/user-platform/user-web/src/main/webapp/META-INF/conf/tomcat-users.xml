@@ -6,5 +6,6 @@
 
     <role rolename="tomcat"/>
     <user username="tomcat" password="tomcat" roles="tomcat"/>
+    <user username="admin" password="123456" roles="tomcat"/>
 
 </tomcat-users>
